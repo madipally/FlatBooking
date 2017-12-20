@@ -12,6 +12,6 @@ describe 'flat_booking/generate_report.html.erb' do
     
      it 'displays sales report' do
       render
-      rendered.should have_selector("h2", text: 'Flat Booking Sales monthly Report') 
+      rendered.should have_selector("h2", text: 'Flat Booking Sales Monthly Report') 
      end
 end
