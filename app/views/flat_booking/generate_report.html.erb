@@ -1,0 +1,40 @@
+<% if flash[:error] %>
+    <div class="alert alert-danger" align="center">
+      <%= flash[:error] %>
+    </div>
+<% else %>
+  <div class="container">
+    <center><h2>Flat Booking Sales <%= @report_type.camelize %>ly Report</h2></center>
+    <div  class="table-responsive">
+      <table class="table table-bordered">
+        <% if !@flats.empty? %>
+          <thead>
+            <tr>
+              <th><%=  @report_type.camelize %></th>
+              <th>Amount(Rs)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @flats.each do |period, flats| %>
+              <tr>
+                <td>
+                   <%= period %>
+                </td>
+                <td>
+                  <% amount = flats.collect{|i| (i.area * i.best_price)+(i.agreement_amount)}%>
+                  <%= amount.sum %>
+                </td>
+              <tr>
+            <% end %>
+          </tbody>
+          <%else%>
+           <tr>
+             <td>
+               <center><h3>No Records found in the period from <%= @start_date %> to <%= @end_date %></h3></center> 
+             </td>
+           </tr>
+        <%end%>  
+      </table>
+    </div>
+  </div>
+<%end%>
